@@ -1,10 +1,11 @@
 import { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import styles from './App.module.scss'
-import Header from './components/Header/Header'
+import styles from './App.module.scss';
+import Header from './components/Header/Header';
 
 const Auth = lazy(() => import('./pages/Auth/Auth'));
 const Registration = lazy(() => import('./pages/Registration/Registration'));
+const Search = lazy(() => import('./pages/Search/Search'));
 
 function App() {
   return (
@@ -16,11 +17,11 @@ function App() {
             <Route path="/" element={"Home page"} />
             <Route path="/auth" element={<Auth />} />
             <Route path="/registration" element={<Registration />} />
+            <Route path="/search" element={<Search/>} />
           </Routes>
         </Suspense>
       </Router>
     </div>
-
   )
 }
 
