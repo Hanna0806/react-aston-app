@@ -1,15 +1,18 @@
 import { Input } from 'antd';
 import styles from './SearchInput.module.scss'; 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addSearchText } from '../../redux/searchTextSlice';
+import type { RootState } from '../../redux/store';
 
 const { Search } = Input;
 
-const SearchInput = () => {
+export const SearchInput = () => {
   const dispatch = useDispatch();
+  const searchText = useSelector((state: RootState) => state.searchText.request);
+
   const onSearch = (value: string) => {
-    if (value !== '') {
-        dispatch(addSearchText(value))
+    if (value.trim() !== '' && value.trim() !== searchText) {
+      dispatch(addSearchText(value.trim()));
     }
   };
 
@@ -22,11 +25,10 @@ const SearchInput = () => {
           allowClear
           enterButton="Найти"
           size="large"
+          defaultValue={searchText}
           onSearch={onSearch}
         />
       </div>
     </div>
   );
 };
-
-export default SearchInput;
