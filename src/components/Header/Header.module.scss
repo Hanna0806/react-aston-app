@@ -3,5 +3,25 @@
     padding: 20px;
     display: flex;
     justify-content: flex-end;
+    min-height: 72px;
+}
+
+.buttons {
+    display: flex;
     gap: 8px;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.welcome {
+    font-size: 18px;
+
+    span {
+        color: orangered;
+        font-weight: 900;
+    }
 }
