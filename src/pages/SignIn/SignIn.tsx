@@ -4,19 +4,18 @@ import { Button, Form, Input } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './SignIn.module.scss';
 import { TNewUser } from '../../types/types';
-import { addActiveUser, clearError } from '../../redux/slices/usersSlice';
-import { IRootState } from '../../redux/store';
-
-const onFinishFailed: FormProps<TNewUser>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-};
+import { addActiveUser, clearError, usersSelector } from '../../redux/slices/usersSlice';
 
 const SignIn: React.FC = () => {
     const dispatch = useDispatch();
-    const { error } = useSelector((state: IRootState) => state.users);
+    const { error } = useSelector(usersSelector);
 
     const onFinish: FormProps<TNewUser>['onFinish'] = (values) => {
         dispatch(addActiveUser(values))
+    };
+
+    const onFinishFailed: FormProps<TNewUser>['onFinishFailed'] = (errorInfo) => {
+        console.log('Failed:', errorInfo);
     };
 
     useEffect(() => {

@@ -3,20 +3,19 @@ import type { FormProps } from 'antd';
 import { Button, Form, Input } from 'antd';
 import styles from './SignUp.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { addUsers, clearError } from '../../redux/slices/usersSlice';
-import { IRootState } from '../../redux/store';
+import { addUsers, clearError, usersSelector } from '../../redux/slices/usersSlice';
 import { TNewUser } from '../../types/types';
-
-const onFinishFailed: FormProps<TNewUser>['onFinishFailed'] = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-};
 
 const SignUp: React.FC = () => {
     const dispatch = useDispatch();
-    const { error } = useSelector((state: IRootState) => state.users);
+    const { error } = useSelector(usersSelector);
 
     const onFinish: FormProps<TNewUser>['onFinish'] = (values) => {
         dispatch(addUsers(values))
+    };
+
+    const onFinishFailed: FormProps<TNewUser>['onFinishFailed'] = (errorInfo) => {
+        console.log('Failed:', errorInfo);
     };
 
     useEffect(() => {

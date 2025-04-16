@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { LOCAL_STORAGE_KEYS } from '../../constants/constants';
 import { TNewUser, UsersState } from '../../types/types';
+import { IRootState } from '../store';
 
 const initialState: UsersState = {
     activeUser: localStorage.getItem(LOCAL_STORAGE_KEYS.ACTIVE_USER) || '',
@@ -45,6 +46,8 @@ const usersSlice = createSlice({
         }
     },
 });
+
+export const usersSelector = (state: IRootState) => state.users;
 
 export const { addActiveUser, addUsers, clearError, deleteActiveUser } = usersSlice.actions;
 export default usersSlice.reducer;
