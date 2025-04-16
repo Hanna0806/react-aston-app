@@ -1,0 +1,53 @@
+.movieCard {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    margin: 8px;
+    max-width: 300px;
+    width: 100%;
+
+    &.loading {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 200px;
+    }
+
+    .poster {
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+
+    h2 {
+      margin: 0 0 8px 0;
+      font-size: 1.5rem;
+      color: #333;
+    }
+
+    p {
+      margin: 8px 0;
+      font-size: 1rem;
+      color: #666;
+
+      &:last-child {
+        font-weight: bold;
+        color: #e67063;
+      }
+    }
+
+    pre {
+      background: #f8f9fa;
+      padding: 12px;
+      border-radius: 4px;
+      margin-top: 8px;
+      overflow-x: auto;
+    }
+  }
