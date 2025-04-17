@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
-import { ROUTES } from '../../constants/constants';
+import { ROUTES } from '../../constants/routes';
 import { usersSelector } from '../../redux/slices/usersSlice';
 
 export const AuthRoutes = () => {

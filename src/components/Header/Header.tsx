@@ -1,6 +1,6 @@
 import styles from './Header.module.scss'
 import { Button } from 'antd';
-import { ROUTES } from '../../constants/constants';
+import { ROUTES } from '../../constants/routes';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteActiveUser, usersSelector } from '../../redux/slices/usersSlice';
