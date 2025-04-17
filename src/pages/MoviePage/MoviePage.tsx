@@ -2,7 +2,7 @@ import { FC } from "react";
 import { MovieCard } from "../../components/MovieCard/MovieCard";
 import styles from "./MoviePage.module.scss";
 
-export interface MoviePageProps {
+export type MoviePageProps = {
   movieId?: number;
   name?: string;
 }
