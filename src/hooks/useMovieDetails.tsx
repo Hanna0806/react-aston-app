@@ -1,7 +1,7 @@
-import { API_KEY } from "../api/config";
+import { API_KEY, API_URL, API_HEADERS } from "../api/config";
 import { useState, useEffect } from "react";
 
-export interface MovieDetails {
+export type MovieDetails = {
   id: number;
   title: string;
   release_date: string;
@@ -25,29 +25,21 @@ export const useMovieDetails = (movieId: number | null) => {
         setError(null);
 
         const tmdbId = `tv-${movieId}`;
-        console.log("Пытаемся получить данные для фильма:", movieId);
 
         const response = await fetch(
-          `https://api.watchmode.com/v1/title/${tmdbId}/details/?apiKey=${API_KEY}`,
+          `${API_URL}/title/${tmdbId}/details/?apiKey=${API_KEY}`,
           {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-            },
+            headers: API_HEADERS
           }
         );
-
-        console.log("Статус ответа:", response.status);
 
         if (!response.ok) {
           throw new Error(`Ошибка ${response.status}: ${response.statusText}`);
         }
 
         const data = await response.json();
-        console.log("Полученные данные:", data);
         setMovie(data);
       } catch (err) {
-        console.error("Ошибка при получении данных:", err);
         setError(err instanceof Error ? err.message : "Произошла ошибка");
       } finally {
         setLoading(false);

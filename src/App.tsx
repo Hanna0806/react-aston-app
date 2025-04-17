@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ROUTES } from './constants/routes';
 import styles from "./App.module.scss";
 import Header from "./components/Header/Header";
-import MoviePage from "./pages/MoviePage/MoviePage";
+import { MoviePage } from "./pages/MoviePage/MoviePage";
 
 const Auth = lazy(() => import("./pages/Auth/Auth"));
 const Registration = lazy(() => import("./pages/Registration/Registration"));

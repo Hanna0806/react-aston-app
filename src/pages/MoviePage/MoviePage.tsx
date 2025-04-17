@@ -15,4 +15,3 @@ export const MoviePage: FC<MoviePageProps> = ({ movieId, name }) => {
   );
 };
 
-export default MoviePage;

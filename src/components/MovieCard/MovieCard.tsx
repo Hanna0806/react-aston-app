@@ -1,8 +1,9 @@
 import { FC } from "react";
 import styles from "./MovieCard.module.scss";
 import { useMovieDetails } from "../../hooks/useMovieDetails";
+import { NotFoundMovie } from "../NotFoundMovie/NotFoundMovie";
 
-export interface MovieCardProps {
+export type MovieCardProps = {
   movieId?: number;
   name?: string;
 }
@@ -27,17 +28,7 @@ export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
   }
 
   if (!movie) {
-    return (
-      <div className={styles.movieCard}>
-        <div>Фильм не найден</div>
-        {process.env.NODE_ENV === "development" && (
-          <pre>
-            Debug Info:
-            {JSON.stringify(movie, null, 2)}
-          </pre>
-        )}
-      </div>
-    );
+    return <NotFoundMovie movie={movie} />;
   }
 
   return (

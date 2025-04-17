@@ -1,0 +1,17 @@
+.notFoundMovie {
+    .message {
+      text-align: center;
+      font-size: 1.25rem;
+      color: #666;
+      margin-bottom: 24px;
+    }
+  
+    .debugInfo {
+      background: #f8f9fa;
+      padding: 16px;
+      border-radius: 4px;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+  }
