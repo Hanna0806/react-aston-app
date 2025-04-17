@@ -3,4 +3,5 @@ export const ROUTES = {
     AUTH: '/auth',
     REGISTRATION: '/registration',
     SEARCH: '/search',
+    HISTORY: '/history',
   } as const;

@@ -3,6 +3,7 @@ import styles from './SearchInput.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { addSearchText } from '../../redux/searchTextSlice';
 import type { RootState } from '../../redux/store';
+import { addHistoryItem } from '../../redux/historySlice';
 
 const { Search } = Input;
 
@@ -13,6 +14,7 @@ export const SearchInput = () => {
   const onSearch = (value: string) => {
     if (value.trim() !== '' && value.trim() !== searchText) {
       dispatch(addSearchText(value.trim()));
+      dispatch(addHistoryItem(value.trim()))
     }
   };
 

@@ -7,6 +7,7 @@ import Header from './components/Header/Header';
 const Auth = lazy(() => import('./pages/Auth/Auth'));
 const Registration = lazy(() => import('./pages/Registration/Registration'));
 const Search = lazy(() => import('./pages/Search/Search'));
+const History = lazy(() => import('./pages/History/History'));
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path={ROUTES.AUTH} element={<Auth />} />
             <Route path={ROUTES.REGISTRATION} element={<Registration />} />
             <Route path={ROUTES.SEARCH} element={<Search/>} />
+            <Route path={ROUTES.HISTORY} element={<History/>} />
           </Routes>
         </Suspense>
       </Router>
