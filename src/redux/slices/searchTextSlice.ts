@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { STORAGE_KEYS } from '../constants/storageKeys';
-import { getFromLocalStorage, setToLocalStorage } from '../utils/localStorageUtils';
+import { STORAGE_KEYS } from '../../constants/storageKeys';
+import { getFromLocalStorage, setToLocalStorage } from '../../utils/localStorageUtils';
 
 interface SearchTextState {
   request: string;
