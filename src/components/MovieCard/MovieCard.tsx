@@ -2,6 +2,8 @@ import { FC } from "react";
 import styles from "./MovieCard.module.scss";
 import { useMovieDetails } from "../../hooks/useMovieDetails";
 import { NotFoundMovie } from "../NotFoundMovie/NotFoundMovie";
+import { LoadingState } from "../LoadingState/LoadingState";
+import { ErrorState } from "../ErrorState/ErrorState";
 
 export type MovieCardProps = {
   movieId?: number;
@@ -12,19 +14,11 @@ export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
   const { loading, error, movie } = useMovieDetails(movieId);
 
   if (loading) {
-    return (
-      <div className={styles.movieCard}>
-        <div>Загрузка...</div>
-      </div>
-    );
+    return <LoadingState isLoading={loading} />
   }
 
   if (error) {
-    return (
-      <div className={styles.movieCard}>
-        <div>Ошибка: {error}</div>
-      </div>
-    );
+    return <ErrorState error={error} />
   }
 
   if (!movie) {
