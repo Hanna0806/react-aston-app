@@ -9,6 +9,7 @@ import { MoviePage } from "./pages/MoviePage/MoviePage";
 const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
 const SignUp = lazy(() => import('./pages/SignUp/SignUp'));
 const Search = lazy(() => import('./pages/Search/Search'));
+const History = lazy(() => import('./pages/History/History'));
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               path={ROUTES.MOVIEPAGE}
               element={<MoviePage movieId={1396} name="Breaking Bad" />}
             />
+          <Route path={ROUTES.HISTORY} element={<History/>} />
         </Routes>
       </Suspense>
     </Router>
