@@ -3,13 +3,13 @@ import { STORAGE_KEYS } from '../constants/storageKeys';
 import { getFromLocalStorage, setToLocalStorage } from '../utils/localStorageUtils';
 import { v4 as uuidv4 } from 'uuid';
 
-interface HistoryItem {
-    date: string;
-    item: string;
+export type HistoryItem = {
     id: string;
+    item: string;
+    date: string;
 };
 
-interface HistoryState {
+export type HistoryState = {
     history: HistoryItem[];
 };
 

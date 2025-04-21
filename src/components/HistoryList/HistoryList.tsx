@@ -1,18 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import { List, Typography, Divider, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import type { RootState } from '../../redux/store';
 import styles from './HistoryList.module.scss';
 import { deleteHistoryItem } from '../../redux/historySlice';
 import { addSearchText } from '../../redux/searchTextSlice';
 import { ROUTES } from '../../constants/routes';
+import { selectHistoryList } from '../../redux/selectors';
 
 const { Text } = Typography;
 
 export const HistoryList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const historyList = useSelector((state: RootState) => state.history.history);
+    const historyList = useSelector(selectHistoryList);
 
     const handleDelete = (id: string) => {
         dispatch(deleteHistoryItem(id));
