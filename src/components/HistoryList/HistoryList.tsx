@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import { List, Typography, Divider, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './HistoryList.module.scss';
-import { deleteHistoryItem } from '../../redux/historySlice';
-import { addSearchText } from '../../redux/searchTextSlice';
+import { deleteHistoryItem } from '../../redux/slices/historySlice';
+import { addSearchText } from '../../redux/slices/searchTextSlice';
 import { ROUTES } from '../../constants/routes';
 import { selectHistoryList } from '../../redux/selectors';
 

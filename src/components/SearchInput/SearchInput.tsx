@@ -1,9 +1,9 @@
 import { Input } from 'antd';
 import styles from './SearchInput.module.scss'; 
 import { useDispatch, useSelector } from 'react-redux';
-import { addSearchText } from '../../redux/searchTextSlice';
+import { addSearchText } from '../../redux/slices/searchTextSlice';
 import type { RootState } from '../../redux/store';
-import { addHistoryItem } from '../../redux/historySlice';
+import { addHistoryItem } from '../../redux/slices/historySlice';
 
 const { Search } = Input;
 

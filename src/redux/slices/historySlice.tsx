@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { STORAGE_KEYS } from '../constants/storageKeys';
-import { getFromLocalStorage, setToLocalStorage } from '../utils/localStorageUtils';
+import { STORAGE_KEYS } from '../../constants/storageKeys';
+import { getFromLocalStorage, setToLocalStorage } from '../../utils/localStorageUtils';
 import { v4 as uuidv4 } from 'uuid';
 
 export type HistoryItem = {
