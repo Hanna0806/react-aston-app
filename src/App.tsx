@@ -5,7 +5,7 @@ import { Header } from "./components/Header/Header";
 import { ROUTES } from "./constants/routes";
 import { AuthRoutes } from "./components/AuthRoutes/AuthRoutes";
 import { MoviePage } from "./pages/MoviePage/MoviePage";
-import FavoritePage from "./pages/FavoritesPage/FavoritesPage";
+import { FavoritePage } from "./pages/FavoritesPage/FavoritesPage";
 
 const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
 const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
@@ -21,13 +21,13 @@ function App() {
           <Route element={<AuthRoutes />}>
             <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+            <Route path={ROUTES.FAVORITES} element={<FavoritePage />} />
           </Route>
           <Route path={ROUTES.SEARCH} element={<Search />} />
           <Route
             path={ROUTES.MOVIEPAGE}
-            element={<MoviePage movieId={1396}/>}
+            element={<MoviePage/>}
           />
-          <Route path={ROUTES.FAVORITES} element={<FavoritePage />} />
         </Routes>
       </Suspense>
     </Router>

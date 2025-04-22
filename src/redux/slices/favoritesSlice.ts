@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { MovieDetails } from '../../hooks/useMovieDetails';
 
-interface FavoritesState {
+type FavoritesState = {
   favorites: MovieDetails[];
 }
 
@@ -14,6 +14,10 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addFavoriteMovie: (state, action: PayloadAction<MovieDetails>) => {
+        console.log('Type of action.payload.id:', typeof action.payload.id);
+        
+        console.log('Type of movie.id in favorites:', state.favorites.map(movie => typeof movie.id));
+
         if (!Array.isArray(state.favorites)) {
             state.favorites = [];
           }
@@ -30,16 +34,16 @@ const favoritesSlice = createSlice({
           }
         state.favorites = state.favorites?.filter(movie => movie.id !== action.payload.id);
         localStorage.setItem('favorites', JSON.stringify(state.favorites));
-      }
+      },
+
+      removeAllFavorites: (state) => {
+        state.favorites = [];
+        localStorage.setItem('favorites', JSON.stringify(state.favorites));
   }
+}
 });
 
-export const removeAllFavorites = () => ({
-    type: 'favorites/removeAll' as const
-  });
-
-
-export const { addFavoriteMovie, removeFavoriteMovie } = favoritesSlice.actions;
+export const { addFavoriteMovie, removeFavoriteMovie, removeAllFavorites} = favoritesSlice.actions;
 
 export const selectFavorites = (state: { favorites: FavoritesState }) => 
   state.favorites.favorites;

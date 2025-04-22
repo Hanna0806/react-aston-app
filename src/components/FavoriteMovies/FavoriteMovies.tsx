@@ -1,32 +1,35 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { Divider } from 'antd';
+import { Row, Col, Divider, Button } from 'antd';
 import { MovieDetails } from '../../hooks/useMovieDetails';
-import { removeFavoriteMovie } from '../../redux/slices/favoritesSlice';
-import { selectFavorites } from '../../redux/slices/favoritesSlice';
+import { selectFavorites, removeAllFavorites } from '../../redux/slices/favoritesSlice';
+import { MovieCard } from '../MovieCard/MovieCard';
 
 export const FavoriteMovies = () => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
-
-
-  const handleRemove = (movieId: number) => {
-    dispatch(removeFavoriteMovie({ id: movieId } as Pick<MovieDetails, "id">));
+  const handleRemoveAllFavorites = () => {
+    dispatch(removeAllFavorites());
   };
 
   return (
     <div>
-       <Divider orientation="left">История моих запросов</Divider>
+       <Divider orientation="left">Избранное</Divider>
       {favorites.length === 0 ? (
         <p>Нет избранных фильмов.</p>
-      ) : (
-        <ul>
+      ) : ( 
+        <Row gutter={[16, 16]}> 
           {favorites.map((movie: MovieDetails) => (
-            <li key={movie.id}>
-              {movie.title}
-              <button onClick={() => handleRemove(movie.id)}>Удалить из Избранного</button>
-            </li>
+            <Col key={movie.id} xs={24} sm={12} md={8} lg={6}> 
+              <MovieCard movieId={movie.id} />
+            </Col>
           ))}
-        </ul>
+          <Button
+          key="delete"
+          danger
+          type="text"
+          onClick={handleRemoveAllFavorites}>Удалить все из избранного</Button>
+        </Row>
+        
       )}
     </div>
   );

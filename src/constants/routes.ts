@@ -3,6 +3,6 @@ export const ROUTES = {
     SEARCH: '/search',
     SIGN_IN: "/signin",
     SIGN_UP: "/signup",
-    MOVIEPAGE: '/movie/:id',
+    MOVIEPAGE: '/movie/:movieId',
     FAVORITES: '/favorites',
   } as const;

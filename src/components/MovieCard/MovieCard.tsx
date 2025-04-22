@@ -11,7 +11,7 @@ import { selectFavorites } from '../../redux/slices/favoritesSlice';
 import { MovieDetails } from '../../hooks/useMovieDetails';
 
 export type MovieCardProps = {
-  movieId?: number;
+  movieId?: string;
 };
 
 export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
@@ -56,9 +56,9 @@ export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
         />
       )}
       <h2>{movie.title}</h2>
-      <p>Year: {movie.year}</p>
-      <p>{movie.plot_overview}</p>
-      <p>Movie rating: {movie.user_rating}</p>
+      <p>Год: {movie.year}</p>
+      <p className={styles['plot-overview']}>{movie.plot}</p>
+      <p>Рейтинг: {movie.user_rating}</p>
     </div>
   );
 };

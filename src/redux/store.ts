@@ -17,7 +17,7 @@ export const store = configureStore({
         serializableCheck: {
           ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
         },
-    }),
+    })
 });
 
 window.addEventListener('load', () => {
@@ -36,7 +36,7 @@ window.addEventListener('load', () => {
           'id' in movie && 
           'title' in movie && 
           'year' in movie && 
-          'plot_overview' in movie && 
+          'plot' in movie && 
           'user_rating' in movie
         );
   

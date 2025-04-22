@@ -1,6 +1,6 @@
 import { FavoriteMovies }  from '../../components/FavoriteMovies/FavoriteMovies';
 
-export default function FavoritePage() {
+export const FavoritePage = () => {
   return (
       <FavoriteMovies/>
   );

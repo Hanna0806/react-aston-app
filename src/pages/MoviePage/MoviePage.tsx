@@ -1,16 +1,13 @@
-import { FC } from "react";
 import { MovieCard } from "../../components/MovieCard/MovieCard";
-import styles from "./MoviePage.module.scss";
+import { useParams } from 'react-router-dom';
 
-export type MoviePageProps = {
-  movieId?: number;
-}
+export const MoviePage = () => {
+  const { movieId } = useParams(); 
+  console.log('Fetching movie details for ID:', movieId); 
 
-export const MoviePage: FC<MoviePageProps> = ({ movieId}) => {
   return (
-    <div className={styles.moviePage}>
-      <MovieCard movieId={movieId}/>
+    <div>
+      <MovieCard movieId={movieId} />
     </div>
   );
 };
-
