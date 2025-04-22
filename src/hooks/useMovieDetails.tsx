@@ -1,4 +1,4 @@
-import { API_KEY, API_URL} from "../api/config";
+import { API_KEY, API_URL } from "../api/config";
 import { useState, useEffect } from "react";
 
 export type MovieDetails = {
@@ -9,7 +9,7 @@ export type MovieDetails = {
   plot: string;
   year: number;
   is_favorite: boolean;
-}
+};
 
 export const useMovieDetails = (movieId: string | null) => {
   const [loading, setLoading] = useState(true);
@@ -17,7 +17,7 @@ export const useMovieDetails = (movieId: string | null) => {
   const [movie, setMovie] = useState<MovieDetails | null>(null);
 
   useEffect(() => {
-    console.log('Fetching movie details for ID:', movieId);
+    console.log("Fetching movie details for ID:", movieId);
     if (!movieId) return;
 
     const fetchMovieDetails = async () => {
@@ -41,11 +41,10 @@ export const useMovieDetails = (movieId: string | null) => {
           title: data.Title,
           user_rating: parseFloat(data.imdbRating) || 0,
           poster: data.Poster,
-          plot: data.Plot || '',
+          plot: data.Plot || "",
           year: parseInt(data.Year, 10) || 0,
-          is_favorite: data.is_favorite ?? false, 
+          is_favorite: data.is_favorite ?? false,
         };
-
 
         setMovie(movieDetails);
       } catch (err) {

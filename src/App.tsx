@@ -24,10 +24,7 @@ function App() {
             <Route path={ROUTES.FAVORITES} element={<FavoritePage />} />
           </Route>
           <Route path={ROUTES.SEARCH} element={<Search />} />
-          <Route
-            path={ROUTES.MOVIEPAGE}
-            element={<MoviePage/>}
-          />
+          <Route path={ROUTES.MOVIEPAGE} element={<MoviePage />} />
         </Routes>
       </Suspense>
     </Router>

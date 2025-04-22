@@ -8,9 +8,11 @@ export type FavoriteToggleProps = {
 
 export const FavoriteToggle: FC<FavoriteToggleProps> = ({
   isFavorite,
-  onToggle
+  onToggle,
 }) => {
-  const [isFavoriteState, setIsFavoriteState] = useState<boolean>(isFavorite ?? false);
+  const [isFavoriteState, setIsFavoriteState] = useState<boolean>(
+    isFavorite ?? false
+  );
 
   const handleFavoriteToggle = () => {
     const newFavoriteState = !isFavoriteState;
