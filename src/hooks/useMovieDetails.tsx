@@ -9,6 +9,7 @@ export type MovieDetails = {
   poster: string;
   plot_overview: string;
   year: number;
+  is_favorite: boolean;
 }
 
 export const useMovieDetails = (movieId: number | null) => {
@@ -38,7 +39,20 @@ export const useMovieDetails = (movieId: number | null) => {
         }
 
         const data = await response.json();
-        setMovie(data);
+
+        const movieDetails: MovieDetails = {
+          id: data.id,
+          title: data.title,
+          release_date: data.release_date,
+          user_rating: data.user_rating,
+          poster: data.poster,
+          plot_overview: data.plot_overview,
+          year: data.year,
+          is_favorite: data.is_favorite ?? false, 
+        };
+
+
+        setMovie(movieDetails);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Произошла ошибка");
       } finally {

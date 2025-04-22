@@ -2,13 +2,14 @@ import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import styles from "./App.module.scss";
 import { Header } from "./components/Header/Header";
-import { ROUTES } from './constants/routes';
-import { AuthRoutes } from './components/AuthRoutes/AuthRoutes';
+import { ROUTES } from "./constants/routes";
+import { AuthRoutes } from "./components/AuthRoutes/AuthRoutes";
 import { MoviePage } from "./pages/MoviePage/MoviePage";
+import FavoritePage from "./pages/FavoritesPage/FavoritesPage";
 
-const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
-const SignUp = lazy(() => import('./pages/SignUp/SignUp'));
-const Search = lazy(() => import('./pages/Search/Search'));
+const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
+const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
+const Search = lazy(() => import("./pages/Search/Search"));
 
 function App() {
   return (
@@ -21,15 +22,16 @@ function App() {
             <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
           </Route>
-          <Route path={ROUTES.SEARCH} element={<Search/>} />
+          <Route path={ROUTES.SEARCH} element={<Search />} />
           <Route
-              path={ROUTES.MOVIEPAGE}
-              element={<MoviePage movieId={1396} name="Breaking Bad" />}
-            />
+            path={ROUTES.MOVIEPAGE}
+            element={<MoviePage movieId={1396}/>}
+          />
+          <Route path={ROUTES.FAVORITES} element={<FavoritePage />} />
         </Routes>
       </Suspense>
     </Router>
-  )
+  );
 }
 
 export default App;

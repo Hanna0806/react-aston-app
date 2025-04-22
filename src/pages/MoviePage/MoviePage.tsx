@@ -4,13 +4,12 @@ import styles from "./MoviePage.module.scss";
 
 export type MoviePageProps = {
   movieId?: number;
-  name?: string;
 }
 
-export const MoviePage: FC<MoviePageProps> = ({ movieId, name }) => {
+export const MoviePage: FC<MoviePageProps> = ({ movieId}) => {
   return (
     <div className={styles.moviePage}>
-      <MovieCard movieId={movieId} name={name} />
+      <MovieCard movieId={movieId}/>
     </div>
   );
 };
