@@ -9,14 +9,8 @@ export const store = configureStore({
   reducer: {
     searchText: searchTextSlice,
     users: usersSlice,
-    favorites: favoritesReducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: ["persist/PERSIST", "persist/REHYDRATE"],
-      },
-    }),
+    favorites: favoritesReducer
+  }
 });
 
 window.addEventListener("load", () => {
