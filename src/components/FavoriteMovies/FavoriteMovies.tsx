@@ -8,7 +8,7 @@ import styles from "./FavoriteMovies.module.scss";
 export const FavoriteMovies = () => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
-  
+
   const handleRemoveAllFavorites = () => {
     dispatch(removeAllFavorites());
   };
@@ -17,7 +17,7 @@ export const FavoriteMovies = () => {
     <div className={styles.favoriteMoviesContainer}>
       <Divider orientation="left">Избранное</Divider>
       {favorites.length === 0 ? (
-        <p>Нет избранных фильмов.</p>
+        <p className={styles.noFavorites}>Нет избранных фильмов.</p>
       ) : (
         <div className={styles.moviesList}>
           <Button

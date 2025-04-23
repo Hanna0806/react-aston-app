@@ -5,8 +5,7 @@ import { NotFoundMovie } from "../NotFoundMovie/NotFoundMovie";
 import { LoadingState } from "../LoadingState/LoadingState";
 import { ErrorState } from "../ErrorState/ErrorState";
 import { FavoriteToggle } from "../FavoriteToggle/FavoriteToggle";
-import { useDispatch, useSelector } from "react-redux";
-import { addFavoriteMovie, removeFavoriteMovie } from "../../redux/slices/favoritesSlice";
+import { useSelector } from "react-redux";
 import { selectFavorites } from "../../redux/slices/favoritesSlice";
 
 export type MovieCardProps = {
@@ -14,7 +13,6 @@ export type MovieCardProps = {
 };
 
 export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
-  const dispatch = useDispatch();
   const favorites = useSelector(selectFavorites);
   const { loading, error, movie } = useMovieDetails(movieId);
 
@@ -30,21 +28,11 @@ export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
     return <NotFoundMovie movie={movie} />;
   }
 
-  const handleFavoriteToggle = (newIsFavorite: boolean) => {
-    if (newIsFavorite) {
-      dispatch(addFavoriteMovie(movie));
-    } else {
-      dispatch(
-        removeFavoriteMovie({ id: movie.id })
-      );
-    }
-  };
-
   const isFavorite = favorites.some((f) => f.id === movie.id);
 
   return (
     <div className={styles.movieCard}>
-      <FavoriteToggle isFavorite={isFavorite} onToggle={handleFavoriteToggle} />
+      <FavoriteToggle isFavorite={isFavorite} movie={movie} />
       {movie.poster && (
         <img
           src={`${movie.poster}`}
