@@ -1,21 +1,30 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { List, Typography, Divider, Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from './HistoryList.module.scss';
 import { deleteHistoryItem } from '../../redux/slices/historySlice';
 import { addSearchText } from '../../redux/slices/searchTextSlice';
 import { ROUTES } from '../../constants/routes';
 import { selectHistoryList } from '../../redux/selectors';
+import {  usersSelector } from '../../redux/slices/usersSlice'; 
+import { setUserHistory } from '../../redux/slices/historySlice';
 
 const { Text } = Typography;
 
 export const HistoryList = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const historyList = useSelector(selectHistoryList);
+    const { activeUser } = useSelector(usersSelector); 
+    const historyList = useSelector(selectHistoryList);  
+
+    useEffect(() => {
+        if (activeUser) {
+          dispatch(setUserHistory(activeUser));
+        }
+      }, [activeUser]);
 
     const handleDelete = (id: string) => {
-        dispatch(deleteHistoryItem(id));
+        dispatch(deleteHistoryItem({ username: activeUser, id })); 
     };
 
     const handleItemClick = (item: string) => {
@@ -24,7 +33,7 @@ export const HistoryList = () => {
     };
 
     return (
-        <div className={styles.historyList}>
+        <div className=''>
             <Divider orientation="left">История моих запросов</Divider>
             <List
                 bordered
