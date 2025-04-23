@@ -1,9 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { MovieDetails } from "../../hooks/useMovieDetails";
-
-type FavoritesState = {
-  favorites: MovieDetails[];
-};
+import { MovieDetails } from "../../types/types";
+import { FavoritesState } from "../../types/types";
 
 const initialState: FavoritesState = {
   favorites: JSON.parse(localStorage.getItem("favorites") || "[]") || [],

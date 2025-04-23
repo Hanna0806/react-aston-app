@@ -5,12 +5,7 @@ import {
   addFavoriteMovie,
   removeFavoriteMovie,
 } from "../../redux/slices/favoritesSlice";
-import { MovieDetails } from "../../types/types";
-
-export type FavoriteToggleProps = {
-  isFavorite: boolean | undefined;
-  movie?: MovieDetails;
-};
+import { FavoriteToggleProps } from "./../../types/types";
 
 export const FavoriteToggle: FC<FavoriteToggleProps> = ({
   isFavorite,

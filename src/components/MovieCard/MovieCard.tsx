@@ -7,10 +7,7 @@ import { ErrorState } from "../ErrorState/ErrorState";
 import { FavoriteToggle } from "../FavoriteToggle/FavoriteToggle";
 import { useSelector } from "react-redux";
 import { selectFavorites } from "../../redux/slices/favoritesSlice";
-
-export type MovieCardProps = {
-  movieId?: string;
-};
+import { MovieCardProps } from "./../../types/types";
 
 export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
   const favorites = useSelector(selectFavorites);

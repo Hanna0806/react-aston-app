@@ -18,3 +18,31 @@ export type MovieDetails = {
   year: number;
   is_favorite: boolean;
 };
+
+export type FavoriteToggleProps = {
+  isFavorite: boolean | undefined;
+  movie?: MovieDetails;
+};
+
+export type MovieCardProps = {
+  movieId?: string;
+};
+
+export type FavoriteButtonProps = {
+  isFavorite: boolean;
+  onClick: () => void;
+  className?: string;
+};
+
+export type LoadingStateProps = {
+  isLoading: boolean;
+};
+
+export type NotFoundMovieProps = {
+  movie?: MovieDetails | null;
+};
+
+export type FavoritesState = {
+    favorites: MovieDetails[];
+  };
+  

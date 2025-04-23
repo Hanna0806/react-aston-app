@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import usersSlice from "./slices/usersSlice";
 import searchTextSlice from "./slices/searchTextSlice";
 import favoritesReducer from "./slices/favoritesSlice";
-import { MovieDetails } from "../hooks/useMovieDetails";
+import { MovieDetails } from "./../types/types";
 import { removeAllFavorites, addFavoriteMovie } from "./slices/favoritesSlice";
 
 export const store = configureStore({

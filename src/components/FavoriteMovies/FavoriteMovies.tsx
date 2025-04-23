@@ -1,7 +1,10 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Divider, Button } from "antd";
-import { MovieDetails } from "../../hooks/useMovieDetails";
-import { selectFavorites, removeAllFavorites } from "../../redux/slices/favoritesSlice";
+import { MovieDetails } from "../../types/types";
+import {
+  selectFavorites,
+  removeAllFavorites,
+} from "../../redux/slices/favoritesSlice";
 import { MovieCard } from "../MovieCard/MovieCard";
 import styles from "./FavoriteMovies.module.scss";
 
