@@ -4,25 +4,25 @@ import { getFromLocalStorage, setToLocalStorage } from '../../utils/localStorage
 import { UserSlice } from '../../types/types';
 
 
-// interface SearchTextState {
-//   request: string;
-// }
+interface MoviesSlice {
+  movies: [],
+}
 
-const initialState: UserSlice = {
-  users: [],
+const initialState: MoviesSlice = {
+  movies: [],
 };
 
-const userSlice = createSlice({
+const moviesSlice = createSlice({
   name: 'searchText', 
   initialState,
   reducers: {
-    addSearchText: (state, action: PayloadAction<string>) => {
-      const newRequest = action.payload;
-      setToLocalStorage(STORAGE_KEYS.SEARCH_REQUEST, newRequest);
-      state.request = newRequest; 
-    },
-    setUsers(state, action: PayloadAction<UserSlice>) {
-      state.users = action.payload;
+    // addSearchText: (state, action: PayloadAction<string>) => {
+    //   const newRequest = action.payload;
+    //   setToLocalStorage(STORAGE_KEYS.SEARCH_REQUEST, newRequest);
+    //   state.request = newRequest; 
+    // },
+    setMovies(state, action: PayloadAction<UserSlice>) {
+      state.movies = action.payload;
     },
 
     // setUsersFilter: (state, action: PayloadAction<UserSlice>) => {
@@ -32,5 +32,5 @@ const userSlice = createSlice({
   },
 });
 
-export const { addSearchText, setUsers } = userSlice.actions;
-export default userSlice.reducer;
+export const { addSearchText, setMovies } = moviesSlice.actions;
+export default moviesSlice.reducer;

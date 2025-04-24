@@ -1,45 +1,46 @@
-import {useState, useEffect} from 'react';
-import { API_KEY, API_URL, API_HEADERS } from "../../api/config";
-import { MovieCard } from '../MovieCard/MovieCard';
-import styles from './CardsList.module.scss'
-import { log } from 'console';
+import {useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux"; 
+import { API_KEY, API_URL } from "../../api/config";
+import styles from "./CardsList.module.scss";
+import { setMovies } from "../../redux/slices/userSlice";
 
 export interface IMoviesTitle {
-    id: number,
-    title: string;
-    year: number;
-    type: string,
-}
-
-export interface IMoviesList {
-        titles: IMoviesTitle[],
-        page: number,
-        total_results: number,
-        total_pages: number,
+  imdbID: number;
+  Title: string;
+  Year: number;
+  Type: string;
+  Poster: string;
 }
 
 export const MoviesList = () => {
-    const [cardsData, setCardsData] = useState<IMoviesList[]>([]);
+//   const [cardsData, setCardsData] = useState<IMoviesTitle[]>([]);
+  const dispatch = useDispatch();
+  const cardsData = useSelector((state) => state.user.users);
 
-    useEffect(() => {
-        const fetchCardsData = async () => {
-            const response = await fetch(
-                `http://www.omdbapi.com/?apikey=6d8ef9e9&type=movie`,
-                // { headers: API_HEADERS }
-            );
-            const data = await response.json();
-            console.log(response);
-            console.log(data);
-            setCardsData(data);
-        };
-        fetchCardsData();
-    }, []);
+  useEffect(() => {
+    const fetchCardsData = async () => {
+      const response = await fetch(`${API_URL}/?apikey=${API_KEY}&s=inception`);
+      const body = await response.json();
+    //   setCardsData(body.Search);
+    dispatch(setMovies(body.data));
+    console.log(body.data);
+    };
+    
+    fetchCardsData();
+  }, []);
 
-    return (
-        <div className={styles.cardsList}>
-            {Array.isArray(cardsData) && cardsData.map((card, index) => <MovieCard key={index} {...card} />)}
-        </div>
-    );
-}
-
+  return (
+    <div className={styles.cardsList}>
+      {Array.isArray(cardsData) &&
+        cardsData.map((card) => (
+          <div>
+            <h3>{card.Title}</h3> 
+            <p>{card.Year}</p> 
+            <p>{card.Type}</p>
+            <img src={card.Poster}/>
+          </div>
+        ))}
+    </div>
+  );
+};
 export default MoviesList;

@@ -5,7 +5,7 @@ import { Header } from "./components/Header/Header";
 import { ROUTES } from './constants/routes';
 import { AuthRoutes } from './components/AuthRoutes/AuthRoutes';
 import { MoviePage } from "./pages/MoviePage/MoviePage";
-import MoviesListCopy from "./components/CardsList/CardsListCopy";
+
 import MoviesList from "./components/CardsList/CardsList";
 
 const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
@@ -16,7 +16,6 @@ function App() {
   return (
     <Router>
       <Header />
-      <MoviesListCopy />
       <MoviesList />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
