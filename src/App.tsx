@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <MoviesList />
+      {/* <MoviesList /> */}
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path={ROUTES.HOME} element={"Home page"} />
@@ -24,7 +24,7 @@ function App() {
             <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
           </Route>
-          <Route path={ROUTES.SEARCH} element={<Search/>} />
+          <Route path={ROUTES.SEARCH} element={<><Search/> <MoviesList /></>}/>
           <Route
               path={ROUTES.MOVIEPAGE}
               element={<MoviePage movieId={1396} name="Breaking Bad" />}
