@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MovieDetails } from "../../types/types";
 import { FavoritesState } from "../../types/types";
+import { STORAGE_KEYS } from '../../constants/storageKeys'
 
 const initialState: FavoritesState = {
-  favorites: JSON.parse(localStorage.getItem("favorites") || "[]") || [],
+  favorites: JSON.parse(localStorage.getItem(STORAGE_KEYS.FAVORITES) || "[]") || [],
 };
 
 const favoritesSlice = createSlice({
@@ -16,7 +17,7 @@ const favoritesSlice = createSlice({
       );
       if (!movieExists) {
         state.favorites.push(action.payload);
-        localStorage.setItem("favorites", JSON.stringify(state.favorites));
+        localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(state.favorites));
       }
     },
 
@@ -27,12 +28,12 @@ const favoritesSlice = createSlice({
       state.favorites = state.favorites.filter(
         (movie) => movie.id !== action.payload.id
       );
-      localStorage.setItem("favorites", JSON.stringify(state.favorites));
+      localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(state.favorites));
     },
 
     removeAllFavorites: (state) => {
       state.favorites = [];
-      localStorage.setItem("favorites", JSON.stringify(state.favorites));
+      localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(state.favorites));
     },
   },
 });

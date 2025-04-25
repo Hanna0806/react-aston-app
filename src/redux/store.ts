@@ -2,8 +2,9 @@ import { configureStore } from "@reduxjs/toolkit";
 import usersSlice from "./slices/usersSlice";
 import searchTextSlice from "./slices/searchTextSlice";
 import favoritesReducer from "./slices/favoritesSlice";
-import { MovieDetails } from "./../types/types";
 import { removeAllFavorites, addFavoriteMovie } from "./slices/favoritesSlice";
+import {filterValidMovies} from './../utils/localStorageUtils';
+import { STORAGE_KEYS } from './../constants/storageKeys'; 
 
 export const store = configureStore({
   reducer: {
@@ -15,7 +16,7 @@ export const store = configureStore({
 
 window.addEventListener("load", () => {
   try {
-    const savedFavorites = localStorage.getItem("favorites");
+    const savedFavorites = localStorage.getItem(STORAGE_KEYS.FAVORITES);
     if (savedFavorites) {
       const parsedData = JSON.parse(savedFavorites);
 
@@ -26,15 +27,7 @@ window.addEventListener("load", () => {
         return;
       }
 
-      const validMovies = parsedData.filter(
-        (movie): movie is MovieDetails =>
-          movie &&
-          "id" in movie &&
-          "title" in movie &&
-          "year" in movie &&
-          "plot" in movie &&
-          "user_rating" in movie
-      );
+      const validMovies = filterValidMovies(parsedData);
 
       if (validMovies.length === 0) {
         console.warn("Нет валидных фильмов в сохраненных данных");
