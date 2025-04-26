@@ -1,10 +1,9 @@
-import { Input } from 'antd';
-import styles from './SearchInput.module.scss'; 
-import { useDispatch, useSelector } from 'react-redux';
-import { addSearchText } from '../../redux/slices/searchTextSlice';
-import { addHistoryItem } from '../../redux/slices/historySlice';
-import { usersSelector } from '../../redux/slices/usersSlice';
-import { selectSearchText } from '../../redux/selectors';
+import { Input } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { addSearchText } from "../../redux/slices/searchTextSlice";
+import { addHistoryItem } from "../../redux/slices/historySlice";
+import { usersSelector } from "../../redux/slices/usersSlice";
+import { selectSearchText } from "../../redux/selectors";
 
 const { Search } = Input;
 
@@ -14,16 +13,15 @@ export const SearchInput = () => {
   const { activeUser } = useSelector(usersSelector);
 
   const onSearch = (value: string) => {
-    if (value.trim() !== '' && value.trim() !== searchText) {
+    if (value.trim() !== "" && value.trim() !== searchText) {
       dispatch(addSearchText(value.trim()));
-      dispatch(addHistoryItem({ username: activeUser , query: value.trim() }));
+      dispatch(addHistoryItem({ username: activeUser, query: value.trim() }));
     }
   };
 
   return (
-    <div className={styles.searchInput}>
-      <p >Поиск фильмов</p>
-      <div className={styles.searchInput__input}>
+    <div>
+      <div>
         <Search
           placeholder="введите название фильма"
           allowClear

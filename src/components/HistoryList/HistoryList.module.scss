@@ -1,0 +1,25 @@
+.listItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  flex-wrap: wrap;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+.entryText {
+  max-width: 500px;
+  word-break: break-word;
+  white-space: normal;
+}
+.entryDate {
+  margin-left: auto;
+  white-space: nowrap;
+
+  @media (max-width: 450px) {
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
