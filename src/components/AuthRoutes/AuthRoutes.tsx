@@ -7,6 +7,6 @@ export const AuthRoutes = () => {
     const { activeUser } = useSelector(usersSelector);
     
     return (
-        activeUser ? <Navigate to={ROUTES.HOME} /> : <Outlet />
+        activeUser ? <Navigate to={ROUTES.SEARCH} /> : <Outlet />
     )
 }

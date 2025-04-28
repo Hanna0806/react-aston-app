@@ -1,27 +1,58 @@
 .header {
-    background-color: aquamarine;
-    padding: 20px;
-    display: flex;
-    justify-content: flex-end;
-    min-height: 72px;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  min-height: 72px;
 }
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 
-.buttons {
-    display: flex;
-    gap: 8px;
-}
-
-.profile {
-    display: flex;
-    align-items: center;
+  @media (max-width: 450px) {
+    flex-direction: column;
     gap: 16px;
+    align-items: center;
+    text-align: center;
+  }
 }
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+  color: #1890ff;
+  cursor: pointer;
 
+  @media (max-width: 450px) {
+    padding-top: 20px;
+  }
+}
+.navigationLink {
+  font-size: 18px;
+  padding-bottom: 3px;
+  font-weight: 500;
+}
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 450px) {
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    text-align: center;
+  }
+}
 .welcome {
-    font-size: 18px;
-
-    span {
-        color: orangered;
-        font-weight: 900;
-    }
+  font-size: 18px;
+  color: #1890ff;
+}
+.welcome span {
+  color: orangered;
+  font-weight: 900;
 }
