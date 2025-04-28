@@ -8,9 +8,14 @@ import { FavoriteToggle } from "../FavoriteToggle/FavoriteToggle";
 import { useSelector } from "react-redux";
 import { selectFavorites } from "../../redux/slices/favoritesSlice";
 import { MovieCardProps } from "./../../types/types";
+import { filterValidMovies } from "../../utils/localStorageUtils";
 
 export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
-  const favorites = useSelector(selectFavorites);
+  const favoritesRaw = useSelector(selectFavorites);
+  
+  const favorites = Array.isArray(favoritesRaw)
+    ? filterValidMovies(favoritesRaw)
+    : [];
   const { loading, error, movie } = useMovieDetails(movieId);
 
   if (loading) {

@@ -7,10 +7,15 @@ import {
 } from "../../redux/slices/favoritesSlice";
 import { MovieCard } from "../MovieCard/MovieCard";
 import styles from "./FavoriteMovies.module.scss";
+import { filterValidMovies } from "../../utils/localStorageUtils";
 
 export const FavoriteMovies = () => {
   const dispatch = useDispatch();
-  const favorites = useSelector(selectFavorites);
+  const favoritesRaw = useSelector(selectFavorites);
+  
+  const favorites = Array.isArray(favoritesRaw)
+    ? filterValidMovies(favoritesRaw)
+    : [];
 
   const handleRemoveAllFavorites = () => {
     dispatch(removeAllFavorites());
