@@ -1,9 +1,6 @@
 import { FC } from "react";
 import styles from "./LoadingState.module.scss";
-
-type LoadingStateProps = {
-  isLoading: boolean;
-};
+import { LoadingStateProps } from "../../types/types";
 
 export const LoadingState: FC<LoadingStateProps> = ({ isLoading }) => {
   if (!isLoading) return null;

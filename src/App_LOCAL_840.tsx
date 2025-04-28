@@ -3,19 +3,16 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { Header } from "./components/Header/Header";
 import { ROUTES } from "./constants/routes";
 import { AuthRoutes } from "./components/AuthRoutes/AuthRoutes";
-import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
-import { Loader } from "./components/Loader/Loader";
 import { MoviePage } from "./pages/MoviePage/MoviePage";
+import { Loader } from "./components/Loader/Loader";
 
 import MoviesList from "./components/CardsList/CardsList";
-import { FavoritePage } from "./pages/FavoritesPage/FavoritesPage";
 
 const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
 const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const Search = lazy(() => import("./pages/Search/Search"));
 const History = lazy(() => import("./pages/History/History"));
-
 
 function App() {
   return (
@@ -28,16 +25,14 @@ function App() {
             <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
           </Route>
-          <Route path={ROUTES.SEARCH} element={<Search  />} />
-          <Route path={ROUTES.MOVIEPAGE} element={<MoviePage />} />
+<<<<<<< HEAD
+          <Route path={ROUTES.SEARCH} element={<Search />} />
+=======
           <Route path={ROUTES.SEARCH} element={<><Search/> <MoviesList /></>}/>
+>>>>>>> main
           <Route
-            path={ROUTES.FAVORITES}
-            element={
-              <ProtectedRoute>
-                <FavoritePage />
-              </ProtectedRoute>
-            }
+            path={ROUTES.MOVIEPAGE}
+            element={<MoviePage movieId={1396} name="Breaking Bad" />}
           />
           <Route path={ROUTES.HISTORY} element={<History />} />
         </Routes>

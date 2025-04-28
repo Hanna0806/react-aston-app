@@ -1,10 +1,6 @@
 import { FC } from "react";
 import styles from "./NotFoundMovie.module.scss";
-import { MovieDetails } from "../../hooks/useMovieDetails";
-
-export type NotFoundMovieProps = {
-  movie?: MovieDetails | null;
-};
+import { NotFoundMovieProps } from "../../types/types";
 
 export const NotFoundMovie: FC<NotFoundMovieProps> = ({ movie }) => {
   return (

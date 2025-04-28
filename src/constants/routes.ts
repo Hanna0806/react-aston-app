@@ -1,8 +1,10 @@
 export const ROUTES = {
+
     HOME: "/",
     SEARCH: "/search",
     SIGN_IN: "/signin",
     SIGN_UP: "/signup",
-    MOVIEPAGE: '/movie/:id',
+    MOVIEPAGE: "/movie/:movieId",
+    FAVORITES: "/favorites",
     HISTORY: "/history",
   } as const;

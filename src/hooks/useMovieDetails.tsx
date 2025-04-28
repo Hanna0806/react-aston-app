@@ -1,22 +1,14 @@
-import { API_KEY, API_URL, API_HEADERS } from "../api/config";
+import { API_KEY, API_URL } from "../api/config";
 import { useState, useEffect } from "react";
+import { MovieDetails} from '../types/types';
 
-export type MovieDetails = {
-  id: number;
-  title: string;
-  release_date: string;
-  user_rating: number;
-  poster: string;
-  plot_overview: string;
-  year: number;
-}
-
-export const useMovieDetails = (movieId: number | null) => {
+export const useMovieDetails = (movieId: string | null) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [movie, setMovie] = useState<MovieDetails | null>(null);
 
   useEffect(() => {
+    console.log("Fetching movie details for ID:", movieId);
     if (!movieId) return;
 
     const fetchMovieDetails = async () => {
@@ -24,13 +16,8 @@ export const useMovieDetails = (movieId: number | null) => {
         setLoading(true);
         setError(null);
 
-        const tmdbId = `tv-${movieId}`;
-
         const response = await fetch(
-          `${API_URL}/title/${tmdbId}/details/?apiKey=${API_KEY}`,
-          {
-            headers: API_HEADERS
-          }
+          `${API_URL}/?apikey=${API_KEY}&i=${movieId}`
         );
 
         if (!response.ok) {
@@ -38,7 +25,19 @@ export const useMovieDetails = (movieId: number | null) => {
         }
 
         const data = await response.json();
-        setMovie(data);
+        console.log(data);
+
+        const movieDetails: MovieDetails = {
+          id: data.imdbID,
+          title: data.Title,
+          user_rating: parseFloat(data.imdbRating) || 0,
+          poster: data.Poster,
+          plot: data.Plot || "",
+          year: parseInt(data.Year, 10) || 0,
+          is_favorite: data.is_favorite ?? false,
+        };
+
+        setMovie(movieDetails);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Произошла ошибка");
       } finally {
