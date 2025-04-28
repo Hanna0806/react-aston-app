@@ -1,5 +1,6 @@
 export const STORAGE_KEYS = {
-  SEARCH_REQUEST: 'request',
   USERS: 'users',
-  ACTIVE_USER: 'activeUser'
+  ACTIVE_USER: 'activeUser',
+  SEARCH_REQUEST: 'searchRequest',
+  HISTORY: 'history',
 } as const;

@@ -1,9 +1,10 @@
-import styles from './Header.module.scss'
+import styles from './Header.module.scss';
 import { Button } from 'antd';
 import { ROUTES } from '../../constants/routes';
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteActiveUser, usersSelector } from '../../redux/slices/usersSlice';
+import { removeSearchText } from '../../redux/slices/searchTextSlice';
 
 export function Header() {
     const navigate = useNavigate();
@@ -12,7 +13,11 @@ export function Header() {
 
     const authHandler = () => navigate(ROUTES.SIGN_IN);
     const regHandler = () => navigate(ROUTES.SIGN_UP);
-    const exitHandler = () => dispatch(deleteActiveUser());
+    const exitHandler = () => {
+        dispatch(deleteActiveUser());
+        dispatch(removeSearchText());
+    };
+    const handleHistoryClick = () => navigate(ROUTES.HISTORY);
 
     return (
         <header className={styles.header}>
@@ -21,6 +26,11 @@ export function Header() {
                 <Button onClick={regHandler}>Регистрация</Button>
             </div>}
             {activeUser && <div className={styles.profile}>
+            <div className={styles.navigation}>
+                <Button type="link" onClick={handleHistoryClick}>
+                    История
+                </Button>
+            </div>
                 <p className={styles.welcome}>Добро пожаловать, <span>{activeUser}</span>!</p>
                 <Button type="primary" onClick={exitHandler}>Выйти</Button>
             </div>}

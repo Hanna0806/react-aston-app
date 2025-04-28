@@ -19,8 +19,12 @@ const searchTextSlice = createSlice({
       setToLocalStorage(STORAGE_KEYS.SEARCH_REQUEST, newRequest);
       state.request = newRequest; 
     },
+    removeSearchText: (state) => {
+      localStorage.removeItem(STORAGE_KEYS.SEARCH_REQUEST)
+      state.request = '';
+    },
   },
 });
 
-export const { addSearchText } = searchTextSlice.actions;
+export const { addSearchText, removeSearchText } = searchTextSlice.actions;
 export default searchTextSlice.reducer;
