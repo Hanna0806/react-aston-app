@@ -6,6 +6,8 @@ import { AuthRoutes } from './components/AuthRoutes/AuthRoutes';
 import { MoviePage } from "./pages/MoviePage/MoviePage";
 import { Loader } from "./components/Loader/Loader";
 
+import MoviesList from "./components/CardsList/CardsList";
+
 const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
 const SignUp = lazy(() => import('./pages/SignUp/SignUp'));
 const Home = lazy(() => import('./pages/Home/Home'));
@@ -23,7 +25,7 @@ function App() {
             <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
           </Route>
-          <Route path={ROUTES.SEARCH} element={<Search/>} />
+          <Route path={ROUTES.SEARCH} element={<><Search/> <MoviesList /></>}/>
           <Route
               path={ROUTES.MOVIEPAGE}
               element={<MoviePage movieId={1396} name="Breaking Bad" />}

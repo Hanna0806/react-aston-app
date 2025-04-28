@@ -24,12 +24,13 @@ export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
   if (!movie) {
     return <NotFoundMovie movie={movie} />;
   }
-
   return (
     <div className={styles.movieCard}>
+
       {movie.poster && (
         <img
           src={`${movie.poster}`}
+          
           alt={`Постер ${movie.title}`}
           className={styles.poster}
         />
