@@ -1,10 +1,10 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import styles from "./App.module.scss";
 import { Header } from "./components/Header/Header";
 import { ROUTES } from './constants/routes';
 import { AuthRoutes } from './components/AuthRoutes/AuthRoutes';
 import { MoviePage } from "./pages/MoviePage/MoviePage";
+import { Loader } from "./components/Loader/Loader";
 
 const SignIn = lazy(() => import('./pages/SignIn/SignIn'));
 const SignUp = lazy(() => import('./pages/SignUp/SignUp'));
@@ -16,7 +16,7 @@ function App() {
   return (
     <Router>
       <Header />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path={ROUTES.HOME} element={<Home/>} />
           <Route element={<AuthRoutes />}>
