@@ -1,6 +1,6 @@
 import { API_KEY, API_URL } from "../api/config";
 import { useState, useEffect } from "react";
-import { MovieDetails} from '../types/types';
+import { MovieDetails } from "../types/types";
 
 export const useMovieDetails = (movieId: string | null) => {
   const [loading, setLoading] = useState(true);

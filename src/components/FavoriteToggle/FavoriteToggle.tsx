@@ -10,7 +10,7 @@ import { FavoriteToggleProps } from "./../../types/types";
 export const FavoriteToggle: FC<FavoriteToggleProps> = ({
   isFavorite,
   movie,
-  userName
+  userName,
 }) => {
   const dispatch = useDispatch();
   const [isFavoriteState, setIsFavoriteState] = useState<boolean>(
@@ -26,7 +26,7 @@ export const FavoriteToggle: FC<FavoriteToggleProps> = ({
     setIsFavoriteState(newFavoriteState);
 
     if (newFavoriteState && movie) {
-      dispatch(addFavoriteMovie({userName, movie}));
+      dispatch(addFavoriteMovie({ userName, movie }));
     } else if (movie) {
       dispatch(removeFavoriteMovie({ id: movie.id, userName }));
     }

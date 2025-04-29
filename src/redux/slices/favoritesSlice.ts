@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MovieDetails } from "../../types/types";
 import { FavoritesState } from "../../types/types";
-import { STORAGE_KEYS } from '../../constants/storageKeys';
+import { STORAGE_KEYS } from "../../constants/storageKeys";
 
 const initialState: FavoritesState = {
-  favorites: JSON.parse(localStorage.getItem(STORAGE_KEYS.FAVORITES) || "[]") || [],
+  favorites:
+    JSON.parse(localStorage.getItem(STORAGE_KEYS.FAVORITES) || "[]") || [],
 };
 
 const favoritesSlice = createSlice({
@@ -17,7 +18,7 @@ const favoritesSlice = createSlice({
     ) => {
       const { movie, userName } = payload;
 
-        const userPrefix = `${STORAGE_KEYS.FAVORITES}_${userName}`;
+      const userPrefix = `${STORAGE_KEYS.FAVORITES}_${userName}`;
       const currentUserMovies = JSON.parse(
         localStorage.getItem(userPrefix) || "[]"
       );
@@ -54,7 +55,8 @@ const favoritesSlice = createSlice({
       );
     },
 
-    removeAllFavorites: (  _,
+    removeAllFavorites: (
+      _,
       { payload }: PayloadAction<{ userName: string }>
     ) => {
       const userPrefix = `${STORAGE_KEYS.FAVORITES}_${payload.userName}`;

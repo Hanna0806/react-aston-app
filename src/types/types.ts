@@ -46,6 +46,12 @@ export type NotFoundMovieProps = {
 };
 
 export type FavoritesState = {
-    favorites: MovieDetails[];
-  };
-  
+  favorites: MovieDetails[];
+};
+
+export type CompactMovieCardProps = {
+  movieId: string;
+  title: string;
+  poster: string;
+  year: number;
+};

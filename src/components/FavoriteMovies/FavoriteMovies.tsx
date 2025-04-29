@@ -2,10 +2,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Divider, Button } from "antd";
 import { MovieDetails } from "../../types/types";
 import { removeAllFavorites } from "../../redux/slices/favoritesSlice";
-import { MovieCard } from "../MovieCard/MovieCard";
+// import { MovieCard } from "../MovieCard/MovieCard";
 import styles from "./FavoriteMovies.module.scss";
 import { usersSelector } from "../../redux/slices/usersSlice";
 import { STORAGE_KEYS } from "../../constants/storageKeys";
+import { CompactMovieCard } from "../CompactMovieCard/CompactMovieCard";
 
 export const FavoriteMovies = () => {
   const dispatch = useDispatch();
@@ -36,7 +37,12 @@ export const FavoriteMovies = () => {
           <Row gutter={[16, 16]}>
             {favorites.map((movie: MovieDetails) => (
               <Col key={movie.id} xs={24} sm={12} md={8} lg={6}>
-                <MovieCard movieId={movie.id} />
+                <CompactMovieCard
+                  movieId={movie.id}
+                  title={movie.title}
+                  poster={movie.poster}
+                  year={movie.year}
+                />
               </Col>
             ))}
           </Row>
