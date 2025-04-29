@@ -16,6 +16,8 @@ export type MovieDetails = {
   poster: string;
   plot: string;
   year: number;
+  language: string;
+  actors: string;
   is_favorite: boolean;
 };
 

@@ -34,6 +34,8 @@ export const useMovieDetails = (movieId: string | null) => {
           poster: data.Poster,
           plot: data.Plot || "",
           year: parseInt(data.Year, 10) || 0,
+          language: data.Language,
+          actors: data.Actors,
           is_favorite: data.is_favorite ?? false,
         };
 

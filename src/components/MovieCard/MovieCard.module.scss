@@ -1,18 +1,22 @@
 .movieCard {
+  display: flex; 
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 16px;
   margin: 8px;
-  max-width: 300px;
-  width: 100%;
-  max-height: 400px;
+  max-width: 80%; 
+  margin: 20px auto;
+
+  .posterContainer {
+    flex: 1; 
+    margin-right: 16px; 
+  }
 
   .poster {
     width: 100%;
     height: auto;
     border-radius: 4px;
-    margin-bottom: 16px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
     &:hover {
@@ -20,40 +24,29 @@
     }
   }
 
+  .infoContainer {
+    flex: 2; 
+  }
+
   h2 {
     margin: 0 0 8px 0;
-    font-size: 20.8px;
-    height: 62.4px;
-    text-overflow: ellipsis;
+    font-size: 30px; 
     color: #333;
+    margin-top: 25px;
   }
 
-  p {
-    margin: 8px 0;
-    font-size: 16px;
+  .year, .rating, .country, .language, .actors {
+    margin: 4px 0;
+    font-size: 20px;
     color: #666;
-
-    &:last-child {
-      font-weight: bold;
-      color: #e67063;
-    }
+    margin-top: 20px;
   }
 
-  .plot-overview {
-    display: block;
-    max-height: 72px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    line-height: 24px;
+  .plot {
     margin: 8px 0;
-  }
-
-  pre {
-    background: #f8f9fa;
-    padding: 12px;
-    border-radius: 4px;
-    margin-top: 8px;
-    overflow-x: auto;
+    font-size: 18px;
+    color: #444;
+    line-height: 1.5; 
+    margin-top: 35px;
   }
 }
