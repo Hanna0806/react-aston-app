@@ -1,24 +1,20 @@
 import { useSelector, useDispatch } from "react-redux";
 import { Row, Col, Divider, Button } from "antd";
 import { MovieDetails } from "../../types/types";
-import {
-  selectFavorites,
-  removeAllFavorites,
-} from "../../redux/slices/favoritesSlice";
+import { removeAllFavorites } from "../../redux/slices/favoritesSlice";
 import { MovieCard } from "../MovieCard/MovieCard";
 import styles from "./FavoriteMovies.module.scss";
-import { filterValidMovies } from "../../utils/localStorageUtils";
+import { usersSelector } from "../../redux/slices/usersSlice";
+import { STORAGE_KEYS } from "../../constants/storageKeys";
 
 export const FavoriteMovies = () => {
   const dispatch = useDispatch();
-  const favoritesRaw = useSelector(selectFavorites);
-  
-  const favorites = Array.isArray(favoritesRaw)
-    ? filterValidMovies(favoritesRaw)
-    : [];
+  const { activeUser } = useSelector(usersSelector);
+  const userPrefix = `${STORAGE_KEYS.FAVORITES}_${activeUser}`;
+  const favorites = JSON.parse(localStorage.getItem(userPrefix) || "[]");
 
   const handleRemoveAllFavorites = () => {
-    dispatch(removeAllFavorites());
+    dispatch(removeAllFavorites({ userName: activeUser }));
   };
 
   return (

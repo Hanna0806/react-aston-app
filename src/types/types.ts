@@ -24,6 +24,7 @@ export type MovieDetails = {
 export type FavoriteToggleProps = {
   isFavorite: boolean | undefined;
   movie?: MovieDetails;
+  userName: string;
 };
 
 export type MovieCardProps = {
