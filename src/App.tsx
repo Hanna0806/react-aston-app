@@ -14,8 +14,8 @@ const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
 const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
 const Home = lazy(() => import("./pages/Home/Home"));
 const Search = lazy(() => import("./pages/Search/Search"));
+const SearchResult = lazy(() => import("./pages/SearchResult/SearchResult"));
 const History = lazy(() => import("./pages/History/History"));
-
 
 function App() {
   return (
@@ -28,22 +28,15 @@ function App() {
             <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
           </Route>
-          <Route path={ROUTES.SEARCH} element={<Search  />} />
+          <Route path={ROUTES.SEARCH} element={<ProtectedRoute><Search  /></ProtectedRoute>} />
+          <Route path={ROUTES.SEARCH_RESULT} element={<ProtectedRoute><SearchResult  /></ProtectedRoute>} />
+          <Route path={ROUTES.HISTORY} element={<ProtectedRoute><History  /></ProtectedRoute>} />
+          <Route path={ROUTES.FAVORITES} element={<ProtectedRoute><FavoritePage /></ProtectedRoute>} />
           <Route path={ROUTES.MOVIEPAGE} element={<MoviePage />} />
-          <Route path={ROUTES.SEARCH} element={<><Search/> <MoviesList /></>}/>
-          <Route
-            path={ROUTES.FAVORITES}
-            element={
-              <ProtectedRoute>
-                <FavoritePage />
-              </ProtectedRoute>
-            }
-          />
-          <Route path={ROUTES.HISTORY} element={<History />} />
         </Routes>
       </Suspense>
     </Router>
   );
-}
+};
 
 export default App;

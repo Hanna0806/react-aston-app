@@ -12,8 +12,8 @@ export const ProtectedRoute = ({ children }: ProtectedRouteProps) => {
   const { activeUser } = useSelector(usersSelector);
 
   if (!activeUser) {
-    return <Navigate to={ROUTES.SIGN_IN} />;
+    return <Navigate to={ROUTES.SIGN_IN} replace />;
   }
 
-  return children;
+  return  <>{children}</>;
 };
