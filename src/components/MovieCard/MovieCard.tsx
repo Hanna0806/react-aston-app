@@ -6,16 +6,14 @@ import { LoadingState } from "../LoadingState/LoadingState";
 import { ErrorState } from "../ErrorState/ErrorState";
 import { FavoriteToggle } from "../FavoriteToggle/FavoriteToggle";
 import { useSelector } from "react-redux";
-import { selectFavorites } from "../../redux/slices/favoritesSlice";
 import { MovieCardProps } from "./../../types/types";
-import { filterValidMovies } from "../../utils/localStorageUtils";
+import { usersSelector } from "../../redux/slices/usersSlice";
+import { STORAGE_KEYS } from "../../constants/storageKeys";
 
 export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
-  const favoritesRaw = useSelector(selectFavorites);
-  
-  const favorites = Array.isArray(favoritesRaw)
-    ? filterValidMovies(favoritesRaw)
-    : [];
+  const { activeUser } = useSelector(usersSelector);
+  const userPrefix = `${STORAGE_KEYS.FAVORITES}_${activeUser}`;
+  const favorites = JSON.parse(localStorage.getItem(userPrefix) || "[]");
   const { loading, error, movie } = useMovieDetails(movieId);
 
   if (loading) {
@@ -30,23 +28,35 @@ export const MovieCard: FC<MovieCardProps> = ({ movieId = null }) => {
     return <NotFoundMovie movie={movie} />;
   }
 
-  const isFavorite = favorites.some((f) => f.id === movie.id);
+  const isFavorite = favorites.some(
+    ({ id }: { id: string }) => id === movie.id
+  );
 
   return (
     <div className={styles.movieCard}>
-      <FavoriteToggle isFavorite={isFavorite} movie={movie} />
-      {movie.poster && (
+      <div className={styles.posterContainer}>
         <img
           src={`${movie.poster}`}
-          
           alt={`Постер ${movie.title}`}
           className={styles.poster}
         />
-      )}
-      <h2>{movie.title}</h2>
-      <p>Год: {movie.year}</p>
-      <p className={styles["plot-overview"]}>{movie.plot}</p>
-      <p>Рейтинг: {movie.user_rating}</p>
+      </div>
+      <div className={styles.infoContainer}>
+        <FavoriteToggle
+          isFavorite={isFavorite}
+          movie={movie}
+          userName={activeUser}
+        />
+        <h2>{movie.title}</h2>
+        <p className={styles.year}>Year: {movie.year}</p>
+        <p className={styles.language}>Language: {movie.language}</p>
+        <p className={styles.plot}>{movie.plot}</p>
+        <p className={styles.actors}>Actors: {movie.actors}</p>
+        <p className={styles.rating}>Rating: {movie.user_rating}</p>
+      </div>
     </div>
   );
 };
+
+//   )
+// };

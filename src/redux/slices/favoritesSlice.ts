@@ -1,39 +1,66 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { MovieDetails } from "../../types/types";
 import { FavoritesState } from "../../types/types";
-import { STORAGE_KEYS } from '../../constants/storageKeys'
+import { STORAGE_KEYS } from "../../constants/storageKeys";
 
 const initialState: FavoritesState = {
-  favorites: JSON.parse(localStorage.getItem(STORAGE_KEYS.FAVORITES) || "[]") || [],
+  favorites:
+    JSON.parse(localStorage.getItem(STORAGE_KEYS.FAVORITES) || "[]") || [],
 };
 
 const favoritesSlice = createSlice({
   name: "favorites",
   initialState,
   reducers: {
-    addFavoriteMovie: (state, action: PayloadAction<MovieDetails>) => {
-      const movieExists = state.favorites.some(
-        (movie) => movie.id === action.payload.id
+    addFavoriteMovie: (
+      _,
+      { payload }: PayloadAction<{ userName: string; movie: MovieDetails }>
+    ) => {
+      const { movie, userName } = payload;
+
+      const userPrefix = `${STORAGE_KEYS.FAVORITES}_${userName}`;
+      const currentUserMovies = JSON.parse(
+        localStorage.getItem(userPrefix) || "[]"
       );
+      const movieExists = currentUserMovies.some(
+        ({ id }: { id: string }) => id === movie.id
+      );
+
       if (!movieExists) {
-        state.favorites.push(action.payload);
-        localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(state.favorites));
+        localStorage.setItem(
+          userPrefix,
+          JSON.stringify(currentUserMovies.concat(movie))
+        );
       }
     },
 
     removeFavoriteMovie: (
-      state,
-      action: PayloadAction<Pick<MovieDetails, "id">>
+      _,
+      {
+        payload,
+      }: PayloadAction<Pick<MovieDetails, "id"> & { userName: string }>
     ) => {
-      state.favorites = state.favorites.filter(
-        (movie) => movie.id !== action.payload.id
+      const { userName } = payload;
+      const userPrefix = `${STORAGE_KEYS.FAVORITES}_${userName}`;
+      const currentUserMovies = JSON.parse(
+        localStorage.getItem(userPrefix) || "[]"
       );
-      localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(state.favorites));
+      localStorage.setItem(
+        userPrefix,
+        JSON.stringify(
+          currentUserMovies.filter(
+            ({ id }: { id: string }) => id !== payload.id
+          )
+        )
+      );
     },
 
-    removeAllFavorites: (state) => {
-      state.favorites = [];
-      localStorage.setItem(STORAGE_KEYS.FAVORITES, JSON.stringify(state.favorites));
+    removeAllFavorites: (
+      _,
+      { payload }: PayloadAction<{ userName: string }>
+    ) => {
+      const userPrefix = `${STORAGE_KEYS.FAVORITES}_${payload.userName}`;
+      localStorage.setItem(userPrefix, JSON.stringify([]));
     },
   },
 });

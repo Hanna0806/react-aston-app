@@ -16,12 +16,15 @@ export type MovieDetails = {
   poster: string;
   plot: string;
   year: number;
+  language: string;
+  actors: string;
   is_favorite: boolean;
 };
 
 export type FavoriteToggleProps = {
   isFavorite: boolean | undefined;
   movie?: MovieDetails;
+  userName: string;
 };
 
 export type MovieCardProps = {
@@ -43,6 +46,12 @@ export type NotFoundMovieProps = {
 };
 
 export type FavoritesState = {
-    favorites: MovieDetails[];
-  };
-  
+  favorites: MovieDetails[];
+};
+
+export type CompactMovieCardProps = {
+  movieId: string;
+  title: string;
+  poster: string;
+  year: number;
+};
