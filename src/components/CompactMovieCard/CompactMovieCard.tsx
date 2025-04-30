@@ -2,6 +2,7 @@ import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./CompactMovieCard.module.scss";
 import { CompactMovieCardProps } from "./../../types/types";
+import { ROUTES } from "../../constants/routes";
 
 export const CompactMovieCard: FC<CompactMovieCardProps> = ({
   title,
@@ -11,7 +12,7 @@ export const CompactMovieCard: FC<CompactMovieCardProps> = ({
 }) => {
   const navigate = useNavigate();
   const handleCardClick = () => {
-    navigate(`/movie/${movieId}`);
+    navigate(ROUTES.MOVIEPAGE.replace(':movieId', movieId));
   };
   return (
     <div className={styles.compactMovieCard} onClick={handleCardClick}>
