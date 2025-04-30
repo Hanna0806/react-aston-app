@@ -3,7 +3,7 @@ import { STORAGE_KEYS } from "../../constants/storageKeys";
 import {
   getFromLocalStorage,
   setToLocalStorage,
-} from "../../utils/localStorageUtils";
+} from "../../utils/utils";
 
 export type MoviesSlice = {
   movies: IMoviesTitle[];
