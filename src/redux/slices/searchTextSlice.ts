@@ -1,13 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { STORAGE_KEYS } from "../../constants/storageKeys";
-import { getFromLocalStorage, setToLocalStorage } from "../../utils/localStorageUtils";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface SearchTextState {
   request: string;
 }
 
 const initialState: SearchTextState = {
-  request: getFromLocalStorage(STORAGE_KEYS.SEARCH_REQUEST) || "",
+  request: localStorage.getItem(STORAGE_KEYS.SEARCH_REQUEST) || "",
 };
 
 const searchTextSlice = createSlice({
@@ -15,12 +14,9 @@ const searchTextSlice = createSlice({
   initialState,
   reducers: {
     addSearchText: (state, action: PayloadAction<string>) => {
-      const newRequest = action.payload;
-      setToLocalStorage(STORAGE_KEYS.SEARCH_REQUEST, newRequest);
-      state.request = newRequest;
+      state.request = action.payload;
     },
     removeSearchText: (state) => {
-      localStorage.removeItem(STORAGE_KEYS.SEARCH_REQUEST);
       state.request = "";
     },
   },

@@ -1,16 +1,18 @@
 .searchResult {
-    padding: 50px;
+  padding: 50px;
+  @media (max-width: 400px) {
+    padding: 20px;
   }
-  
-  .title {
-    font-size: 24px;
-    margin-bottom: 5px;
-  }
-  
-  .searchInputWrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-bottom: 50px;
-  }
-  
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.searchInputWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 50px;
+}

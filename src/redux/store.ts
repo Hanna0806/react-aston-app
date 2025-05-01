@@ -4,6 +4,7 @@ import searchTextSlice from "./slices/searchTextSlice";
 import historySlice from "./slices/historySlice";
 import moviesSlice from "./slices/moviesListSlice";
 import favoritesReducer from "./slices/favoritesSlice";
+import { searchTextMiddleware } from "./middleware/searchTextMiddleware"; 
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,8 @@ const store = configureStore({
     movies: moviesSlice,
     favorites: favoritesReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+  getDefaultMiddleware().concat(searchTextMiddleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
