@@ -1,5 +1,7 @@
 import { Input } from "antd";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from 'react-router-dom';
+import { ROUTES } from "../../constants/routes";
 import { addSearchText } from "../../redux/slices/searchTextSlice";
 import { addHistoryItem } from "../../redux/slices/historySlice";
 import { usersSelector } from "../../redux/slices/usersSlice";
@@ -9,6 +11,7 @@ const { Search } = Input;
 
 export const SearchInput = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const searchText = useSelector(selectSearchText);
   const { activeUser } = useSelector(usersSelector);
 
@@ -16,6 +19,7 @@ export const SearchInput = () => {
     if (value.trim() !== "" && value.trim() !== searchText) {
       dispatch(addSearchText(value.trim()));
       dispatch(addHistoryItem({ username: activeUser, query: value.trim() }));
+      navigate(ROUTES.SEARCH_RESULT)
     }
   };
 

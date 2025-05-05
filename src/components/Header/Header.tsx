@@ -19,8 +19,10 @@ export function Header() {
     navigate(ROUTES.HOME);
   };
   const handleHistoryClick = () => navigate(ROUTES.HISTORY);
+  const handleFavoritesClick = () => navigate(ROUTES.FAVORITES);
   const handleLogoClick = () => {
     if (activeUser) {
+      dispatch(removeSearchText());
       navigate(ROUTES.SEARCH);
     } else {
       navigate(ROUTES.HOME);
@@ -44,9 +46,12 @@ export function Header() {
         {activeUser && (
           <div className={styles.profile}>
             <div className={styles.navigation}>
+            <Button type="link" className={styles.navigationLink} onClick={handleFavoritesClick}>
+                Избранное
+              </Button>
               <Button type="link" className={styles.navigationLink} onClick={handleHistoryClick}>
                 История
-              </Button>
+              </Button> 
             </div>
             <p className={styles.welcome}>
               Добро пожаловать, <span>{activeUser}</span>!

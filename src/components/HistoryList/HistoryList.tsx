@@ -36,6 +36,9 @@ export const HistoryList = () => {
   return (
     <div>
       <Divider orientation="left">История моих запросов</Divider>
+      {historyList.length === 0 ? (
+        <p className={styles.noHistory}>История запросов пуста.</p>
+      ) : (
       <List
         bordered
         dataSource={historyList}
@@ -57,7 +60,7 @@ export const HistoryList = () => {
             </Text>
           </List.Item>
         )}
-      />
+      />)}
     </div>
   );
 };
