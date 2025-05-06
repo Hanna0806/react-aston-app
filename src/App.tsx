@@ -63,6 +63,6 @@ function App() {
       </Suspense>
     </Router>
   );
-}
+};
 
 export default App;

@@ -14,6 +14,7 @@ export const MoviesList = () => {
   const searchText = useSelector(selectSearchText);
 
   useEffect(() => {
+    console.log(searchText);
     const fetchCardsData = async () => {
       const response = await fetch(`${API_URL}/?apikey=${API_KEY}&s=${searchText}`);
       const body = await response.json();
@@ -26,6 +27,7 @@ export const MoviesList = () => {
   const handleCardClick = (id: string) => {
     navigate(ROUTES.MOVIEPAGE.replace(":movieId", id));
   };
+
 
   return (
     <div className={styles.cardsList}>
