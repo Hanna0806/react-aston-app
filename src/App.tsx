@@ -6,8 +6,6 @@ import { AuthRoutes } from "./components/AuthRoutes/AuthRoutes";
 import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 import { Loader } from "./components/Loader/Loader";
 import { MoviePage } from "./pages/MoviePage/MoviePage";
-
-import MoviesList from "./components/CardsList/CardsList";
 import { FavoritePage } from "./pages/FavoritesPage/FavoritesPage";
 
 const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
@@ -23,15 +21,43 @@ function App() {
       <Header />
       <Suspense fallback={<Loader />}>
         <Routes>
-          <Route path={ROUTES.HOME} element={<Home />} />
           <Route element={<AuthRoutes />}>
             <Route path={ROUTES.SIGN_IN} element={<SignIn />} />
             <Route path={ROUTES.SIGN_UP} element={<SignUp />} />
+            <Route path={ROUTES.HOME} element={<Home />} />
           </Route>
-          <Route path={ROUTES.SEARCH} element={<ProtectedRoute><Search  /></ProtectedRoute>} />
-          <Route path={ROUTES.SEARCH_RESULT} element={<ProtectedRoute><SearchResult  /></ProtectedRoute>} />
-          <Route path={ROUTES.HISTORY} element={<ProtectedRoute><History  /></ProtectedRoute>} />
-          <Route path={ROUTES.FAVORITES} element={<ProtectedRoute><FavoritePage /></ProtectedRoute>} />
+          <Route
+            path={ROUTES.SEARCH}
+            element={
+              <ProtectedRoute>
+                <Search />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={ROUTES.SEARCH_RESULT}
+            element={
+              <ProtectedRoute>
+                <SearchResult />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={ROUTES.HISTORY}
+            element={
+              <ProtectedRoute>
+                <History />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path={ROUTES.FAVORITES}
+            element={
+              <ProtectedRoute>
+                <FavoritePage />
+              </ProtectedRoute>
+            }
+          />
           <Route path={ROUTES.MOVIEPAGE} element={<MoviePage />} />
         </Routes>
       </Suspense>
